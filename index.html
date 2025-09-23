@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projeto Bulma</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
+  
+  <style>
+    body {
+      background-color: #f4f4f4;
+      padding: 2rem 0;
+    }
+    .container {
+      max-width: 600px;
+      background-color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .title {
+      text-align: center;
+      color: #3273dc;
+    }
+    .subtitle {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .field {
+      margin-bottom: 1.5rem;
+    }
+    .button {
+      width: 100%;
+    }
+    #bandeira-container {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    #bandeira-container img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1 class="title">Bem-vindo ao Bulma!</h1>
+    <h2 class="subtitle">Escolha seu Estado</h2>
+    
+    <form id="form-estado">
+        <div class="field">
+            <label class="label" for="estado">Estado:</label>
+            <div class="control">
+                <div class="select is-fullwidth">
+                    <select id="estado" name="estado">
+                        <option value="">Selecione...</option>
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <button type="submit" class="button is-primary">Enviar</button>
+            </div>
+        </div>
+    </form>
+
+    <div id="bandeira-container"></div>
+  </div>
+
+  <script>
+    const bandeiras = {
+      AC: "https://upload.wikimedia.org/wikipedia/commons/4/4c/Bandeira_do_Acre.svg",
+      AL: "https://upload.wikimedia.org/wikipedia/commons/8/88/Bandeira_de_Alagoas.svg",
+      AP: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bandeira_do_Amapá.svg",
+      AM: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Bandeira_do_Amazonas.svg",
+      BA: "https://upload.wikimedia.org/wikipedia/commons/2/28/Bandeira_da_Bahia.svg",
+      CE: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Bandeira_do_Ceará.svg",
+      DF: "https://upload.wikimedia.org/wikipedia/commons/3/3c/Bandeira_do_Distrito_Federal_%28Brasil%29.svg",
+      ES: "https://upload.wikimedia.org/wikipedia/commons/4/43/Bandeira_do_Espírito_Santo.svg",
+      GO: "https://upload.wikimedia.org/wikipedia/commons/b/be/Bandeira_de_Goiás.svg",
+      MA: "https://upload.wikimedia.org/wikipedia/commons/4/45/Bandeira_do_Maranhão.svg",
+      MT: "https://upload.wikimedia.org/wikipedia/commons/0/0b/Bandeira_de_Mato_Grosso.svg",
+      MS: "https://upload.wikimedia.org/wikipedia/commons/6/64/Bandeira_de_Mato_Grosso_do_Sul.svg",
+      MG: "https://upload.wikimedia.org/wikipedia/commons/f/f4/Bandeira_de_Minas_Gerais.svg",
+      PA: "https://upload.wikimedia.org/wikipedia/commons/0/02/Bandeira_do_Pará.svg",
+      PB: "https://upload.wikimedia.org/wikipedia/commons/b/bb/Bandeira_da_Paraíba.svg",
+      PR: "https://upload.wikimedia.org/wikipedia/commons/9/93/Bandeira_do_Paraná.svg",
+      PE: "https://upload.wikimedia.org/wikipedia/commons/5/59/Bandeira_de_Pernambuco.svg",
+      PI: "https://upload.wikimedia.org/wikipedia/commons/3/3b/Bandeira_do_Piauí.svg",
+      RJ: "https://upload.wikimedia.org/wikipedia/commons/7/73/Bandeira_do_Estado_do_Rio_de_Janeiro.svg",
+      RN: "https://upload.wikimedia.org/wikipedia/commons/3/30/Bandeira_do_Rio_Grande_do_Norte.svg",
+      RS: "https://upload.wikimedia.org/wikipedia/commons/2/28/Bandeira_do_Rio_Grande_do_Sul.svg",
+      RO: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Bandeira_de_Rondônia.svg",
+      RR: "https://upload.wikimedia.org/wikipedia/commons/9/98/Bandeira_de_Roraima.svg",
+      SC: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Bandeira_de_Santa_Catarina.svg",
+      SP: "https://upload.wikimedia.org/wikipedia/commons/2/2b/Bandeira_do_estado_de_São_Paulo.svg",
+      SE: "https://upload.wikimedia.org/wikipedia/commons/b/be/Bandeira_de_Sergipe.svg",
+      TO: "https://upload.wikimedia.org/wikipedia/commons/f/ff/Bandeira_do_Tocantins.svg"
+    };
+
+    document.getElementById("form-estado").addEventListener("submit", function (e) {
+      e.preventDefault(); 
+
+      const estado = document.getElementById("estado").value;
+      const container = document.getElementById("bandeira-container");
+
+      if (estado && bandeiras[estado]) {
+        container.innerHTML = `
+          <h3 class="subtitle">Bandeira do estado selecionado:</h3>
+          <img src="${bandeiras[estado]}" alt="Bandeira de ${estado}">
+        `;
+      } else {
+        container.innerHTML = '<p class="has-text-danger">Por favor, selecione um estado válido.</p>';
+      }
+    });
+  </script>
+
+</body>
+</html>
